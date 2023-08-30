@@ -1,0 +1,120 @@
+body {
+  width: 100vh;
+  height: 100%;
+  background-color: transparent;
+}
+
+
+.card-body {
+  height: 100px;
+  display: flex;
+  align-items: center;
+}
+
+.align-items-center {
+  width: 100%;
+
+}
+
+.one {
+  width: 16.66%;
+  text-align: start;
+}
+
+.two {
+  width: 16.66%;
+  text-align: center;
+}
+
+.three {
+  width: 16.66%;
+  text-align: center;
+}
+
+.four {
+  width: 16.66%;
+  text-align: center;
+}
+
+.fife {
+  width: 16.66%;
+  text-align: center;
+}
+
+.six {
+  width: 16.66%;
+  text-align: end;
+}
+
+
+.card {
+  width: 100%;
+  background-color: #1F213A;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.align-items-center {
+  width: 100%;
+  justify-content: space-between;
+  margin-right: 0px;
+}
+
+.paid {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #202B41;
+  padding: 7px 15px 7px 15px;
+  border-radius: 10px;
+  color: #4cd588;
+
+  width: 16.66%;
+  text-align: center;
+}
+
+.point {
+  background-color: transparent;
+
+}
+
+.rounded-circle {
+  width: 10px;
+  height: 10px;
+  margin-right: 13px;
+}
+
+.price {
+  font-weight: bold;
+  font-size: 21px;
+}
+
+.final {
+  background-color: #21233d;
+  border: none;
+  border-radius: 0;
+  color: white;
+  height: 100px;
+  width: 54px;
+  border-radius: 10px 10px 10px 10px;
+  text-align: center;
+}
+
+.final:hover {
+  background-color: #767ba2;
+  color: #1d1b31;
+}
+
+
+.custom-color {
+  background-color: #4cd588; /* Replace with your chosen color */
+}
+
+
+.card-body {
+  flex: 1 1 auto;
+  padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
+  color: var(--bs-card-color);
+  padding-right: 0px;
+}

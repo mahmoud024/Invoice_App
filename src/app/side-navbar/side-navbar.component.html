@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <title> Responsive Sidebar Menu | CodingLab </title>
+  <link rel="stylesheet" href="side-navbar.component.css">
+  <!-- Boxicons CDN Link -->
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<div class="sidebar">
+  <div class="navbarContent">
+    <div class="logo">
+      <a routerLink="/invoices"> <!-- LOGO -->
+        <i class='bx bxl-angular' id="btn"></i>
+      </a>
+    </div>
+    <div class="dark">
+      <button><!-- DarkMood -->
+        <i class='bx bx-moon'></i>
+      </button>
+    </div>
+    <div class="logout">
+      <button (click)="logoutt()"><!-- Logout -->
+        <i class='bx bx-log-out-circle'></i>
+      </button>
+    </div>
+    <div class="hr">
+      <hr class="divider"> <!-- Add HR element -->
+    </div>
+    <div class="profile">
+      <a routerLink="/profile"><!-- Profile -->
+        <!--        <img src="./assets/profile.png" alt="" class="rounded-image">-->
+        <i class='bx bxs-user'></i>
+      </a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

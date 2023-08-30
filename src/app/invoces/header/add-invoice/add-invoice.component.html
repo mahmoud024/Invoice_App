@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <title> Responsive Sidebar Menu | CodingLab </title>
+  <link rel="stylesheet" href="add-invoice.component.css">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+
+<div class="sidebar" *ngIf="!isSidebarOpen"><!--*ngIf="!isSidebarOpen"-->
+  <div class="navbarContent">
+    <button class="close" (click)="closeSidebar()">
+      <i class='bx bx-x'></i>
+    </button>
+    <label class="mb-4" style="color:white; font-weight: bold; font-size: 27px">Add New Invoice</label>
+    <br>
+    <label style="color: #7C5DF9 ; font-size: 12px">Bill From</label>
+
+    <form #x="ngForm" (ngSubmit)="add(x)">
+      <div class="form-group">
+        <label for="StreetAddress">Street Address</label>
+        <input ngModel type="text" class="form-control" id="StreetAddress" name="StreetAddress">
+      </div>
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-4 mb-1">
+            <label for="detail1">City</label>
+            <input ngModel type="text" class="form-control" id="detail1" name="City">
+          </div>
+          <div class="col-md-4 mb-1">
+            <label for="detail2">PostCode</label>
+            <input ngModel type="text" class="form-control" id="detail2" name="PostCode">
+          </div>
+          <div class="col-md-4 mb-1">
+            <label for="detail3">Country</label>
+            <input ngModel type="text" class="form-control" id="detail3" name="Country">
+          </div>
+        </div>
+      </div>
+
+      <label style="color: #7C5DF9 ; font-size: 12px">Bill To</label>
+
+      <div class="form-group">
+        <label for="name">Client's Name</label>
+        <input ngModel type="text" class="form-control" id="name" name="ClientName">
+      </div>
+
+      <div class="form-group">
+        <label for="invoiceName2">Client's Email</label>
+        <input ngModel type="text" class="form-control" id="invoiceName2" name="ClientEmail">
+      </div>
+
+      <div class="form-group">
+        <label for="invoiceName3">Street Address</label>
+        <input ngModel type="text" class="form-control" id="invoiceName3" name="ClientStreetAddress">
+      </div>
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-4 mb-1">
+            <label for="detail4">City</label>
+            <input ngModel type="text" class="form-control" id="detail4" name="ClientCity">
+          </div>
+          <div class="col-md-4 mb-1">
+            <label for="detail5">PostCode</label>
+            <input ngModel type="text" class="form-control" id="detail5" name="ClientPostCode">
+          </div>
+          <div class="col-md-4 mb-1">
+            <label for="detail6">Country</label>
+            <input ngModel type="text" class="form-control" id="detail6" name="ClientCountry">
+          </div>
+        </div>
+      </div>
+
+      <!-- ... Other form groups ... -->
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-6 mb-1">
+            <label for="dateField">Invoice Date</label>
+            <input ngModel type="date" class="form-control" id="dateField" name="InvoiceDate">
+          </div>
+          <div class="col-md-6 mb-1">
+            <label for="comboBox">Payment Terms</label>
+            <select [(ngModel)]="selectedValue" class="form-control" id="comboBox" name="PaymentTerms">
+              <option value="" default>Select</option>
+              <option value="Net 1 Day">Net 1 Day</option>
+              <option value="Net 7 Day">Net 7 Day</option>
+              <option value="Net 14 Day">Net 14 Day</option>
+              <option value="Net 30 Day">Net 30 Day</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="ProjectDescription">Project Description</label>
+        <input ngModel type="text" class="form-control" id="ProjectDescription" name="Description">
+      </div>
+
+      <label style="font-size: 20px ; font-weight: bold">Item List</label>
+      <!-- ... Other form groups ... -->
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-4 mb-1">
+            <label for="detail7">Item Name</label>
+            <input ngModel type="text" class="form-control" id="detail7" name="ItemName">
+          </div>
+          <div class="col-md-2 mb-1">
+            <label for="detail8">Qty.</label>
+            <input ngModel [(ngModel)]="quantity" maxlength="1" type="text" class="form-control" id="detail8"
+                   name="Qty">
+          </div>
+          <div class="col-md-3 mb-1">
+            <label for="detail9">Price</label>
+            <input ngModel [(ngModel)]="price" maxlength="5" type="text" minlength="8" class="form-control" id="detail9"
+                   name="Price">
+          </div>
+          <div class="col-md-2 mb-1">
+            <label>Total</label>
+            <br>
+            <label style="padding-top: 10px; color: #4cd588 ; font-weight: bold">{{calculateTotal()}}</label>
+          </div>
+          <div class="col-md-1 mb-2"
+               style="display: flex;justify-content: center;align-items: start;width: 0px; margin-top: 35px">
+            <label> </label>
+            <br><br>
+            <button style="background-color: transparent ; border: none ; cursor: pointer">
+              <div class="icon-container">
+                <i class='bx bxs-trash-alt' style="font-size: 23px ; color: #9996a4"></i>
+              </div>
+            </button>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between mt-3">
+        <button type="submit" class="btn btn-success">Add Invoice</button>
+      </div>
+      <div class="d-flex justify-content-between mt-3">
+        <button (click)="clearForm(x)" type="button" class="btn btn-danger">Clear Data</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>
+

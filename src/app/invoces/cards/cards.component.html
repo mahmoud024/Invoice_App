@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+  <link rel="stylesheet" href="cards.component.css">
+</head>
+<body>
+
+<div class="card">
+  <div class="card-body">
+    <div class="d-flex align-items-center">
+      <div class="one">
+        <p id="item-id" class="m-0"><span style="color:#a391ee">#</span> <span
+          style="font-weight: bold ; font-size: 20px">{{card.id.substring(0, 5)}}</span></p>
+      </div>
+      <div class="two">
+        <p id="due-date" class="m-0">{{card.ClientName}}</p>
+      </div>
+      <div class="three">
+        <p id="customer-name" class="m-0">{{card.InvoiceDate}}</p>
+      </div>
+      <div class="ml-auto" class="four">
+        <p id="price" class="m-0" [ngClass]="'price'">${{card.price}}</p>
+      </div>
+      <div class="paid">
+        <div class="point">
+          <div class="custom-color rounded-circle"></div>
+        </div>
+        <div>
+          <div class="ml-2" *ngIf="card.isPaid">Paid</div>
+          <div class="ml-2" *ngIf="!card.isPaid">Paid</div>
+        </div>
+      </div>
+      <button class="ml-auto" (click)="goToUpdate(card.id)" [ngClass]="'final'" class="six">
+        <i class='bx bx-right-arrow-alt' style="font-size: 28px"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+

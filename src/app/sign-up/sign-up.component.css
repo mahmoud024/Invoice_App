@@ -1,0 +1,89 @@
+.gradient-custom {
+  background: #060d79;
+  background: -webkit-linear-gradient(to left, rgb(8, 5, 45), rgb(189, 193, 203));
+  background: linear-gradient(to left, rgb(10, 4, 42), rgb(143, 156, 178));
+  height: 40px;
+}
+
+
+input::placeholder {
+  font-size: 15px;
+  color: #9d9c9c;
+}
+
+.py-5 {
+  padding-top: 3rem !important;
+  padding-bottom: 15rem !important;
+}
+
+
+.logo {
+  font-size: 60px;
+  color: #00043f;
+}
+
+body, html {
+  height: 100%;
+  margin: 0;
+  overflow: hidden; /* Prevent scrolling */
+}
+
+.vh-100 {
+  height: 100%;
+  overflow: hidden; /* Prevent scrolling */
+}
+
+.invalid-input {
+  border: 1px solid red;
+}
+
+.mt-md-4 {
+  margin-top: -1.5rem !important;
+}
+
+.mb-md-5 {
+  margin-bottom: -2rem !important;
+}
+
+.py-5[_ngcontent-ng-c3773368460] {
+  padding-top: 0rem !important;
+  padding-bottom: 15rem !important;
+}
+
+.mt-md-4[_ngcontent-ng-c3684629865] {
+  margin-top: -0.5rem !important;
+}
+
+
+element.style {
+}
+
+.text-white-50 {
+  --bs-text-opacity: 1;
+  color: rgba(255, 255, 255, .5) !important;
+}
+
+.mb-5 {
+  margin-bottom: 1rem !important;
+}
+
+.col-md-8 {
+  flex: 0 0 auto;
+  width: 45.666667%;
+
+}
+
+.py-5[_ngcontent-ng-c3684629865] {
+  padding-top: 0rem !important;
+  padding-bottom: 15rem !important;
+}
+
+
+.p-5 {
+  padding: 2rem !important;
+}
+
+.mt-md-4[_ngcontent-ng-c3684629865][_ngcontent-ng-c3684629865] {
+  margin-top: -0.5rem !important;
+  padding: 10px;
+}
