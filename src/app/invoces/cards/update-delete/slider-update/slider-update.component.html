@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <title> Responsive Sidebar Menu | CodingLab </title>
+  <link rel="stylesheet" href="slider-update.component.css">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+
+<div class="sidebar" *ngIf="!isSidebarOpen"><!--*ngIf="!isSidebarOpen"-->
+  <div class="navbarContent">
+
+    <!--    objectArray.ClientName -->
+    <button class="close" (click)="closeSidebar()">
+      <i class='bx bx-x'></i>
+    </button>
+    <label class="mb-4" style="color:white; font-weight: bold; font-size: 27px">Update Invoice</label>
+    <br>
+    <label style="color: #7C5DF9 ; font-size: 12px">Bill From</label>
+
+    <form #x="ngForm"> <!--   (ngSubmit)="add()"-->
+      <div class="form-group">
+        <label for="streetAddress">Street Address</label>
+        <input style="color:#baa5ff " type="text" class="form-control" id="streetAddress" name="streetAddress"
+               [value]="data.StreetAddress" [(ngModel)]="objectArray.StreetAddress">
+      </div>
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-4 mb-1">
+            <label for="City">City</label>
+            <input style="color: #baa5ff" type="text" class="form-control" id="City" name="City" [value]="data.City"
+                   [(ngModel)]="objectArray.City">
+          </div>
+          <div class="col-md-4 mb-1">
+            <label for="PostCode">PostCode</label>
+            <input style="color: #baa5ff" type="text" class="form-control" id="PostCode" name="PostCode"
+                   [value]="data.PostCode" [(ngModel)]="objectArray.PostCode">
+          </div>
+          <div class="col-md-4 mb-1">
+            <label for="Country">Country</label>
+            <input style="color: #baa5ff" type="text" class="form-control" id="Country" name="Country"
+                   [value]="data.Country" [(ngModel)]="objectArray.Country">
+          </div>
+        </div>
+      </div>
+
+      <label style="color: #7C5DF9 ; font-size: 12px">Bill To</label>
+
+      <div class="form-group">
+        <label for="ClientName">Client's Name</label>
+        <input style="color: #baa5ff" type="text" class="form-control" id="ClientName" name="ClientName"
+               [value]="data.ClientName" [(ngModel)]="objectArray.ClientName">
+      </div>
+
+      <div class="form-group">
+        <label for="ClientEmail">Client's Email</label>
+        <input style="color: #baa5ff" type="text" class="form-control" id="ClientEmail" name="ClientEmail"
+               [value]="data.ClientEmail" [(ngModel)]="objectArray.ClientEmail">
+      </div>
+
+      <div class="form-group">
+        <label for="invoiceName3">Street Address</label>
+        <input style="color: #baa5ff" type="text" class="form-control" id="invoiceName3" name="invoiceName"
+               [value]="data.ClientStreetAddress" [(ngModel)]="objectArray.ClientStreetAddress">
+      </div>
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-4 mb-1">
+            <label for="ClientCity">C.City</label>
+            <input style="color: #baa5ff" type="text" class="form-control" id="ClientCity" name="ClientCity"
+                   [value]="data.ClientCity" [(ngModel)]="objectArray.ClientCity">
+          </div>
+          <div class="col-md-4 mb-1">
+            <label for="ClientPostCode">C.PostCode</label>
+            <input style="color: #baa5ff" type="text" class="form-control" id="ClientPostCode" name="ClientPostCode"
+                   [value]="data.ClientPostCode" [(ngModel)]="objectArray.ClientPostCode">
+          </div>
+          <div class="col-md-4 mb-1">
+            <label for="ClientCountry">C.Country</label>
+            <input style="color: #baa5ff" type="text" class="form-control" id="ClientCountry" name="ClientCountry"
+                   [value]="data.ClientCountry" [(ngModel)]="objectArray.ClientCountry">
+          </div>
+        </div>
+      </div>
+
+      <!-- ... Other form groups ... -->
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-6 mb-1">
+            <label for="InvoiceDate">Invoice Date</label>
+            <input style="color: #baa5ff" type="date" class="form-control" id="InvoiceDate" name="InvoiceDate"
+                   [value]="data.InvoiceDate" [(ngModel)]="objectArray.InvoiceDate">
+          </div>
+          <div class="col-md-6 mb-1">
+            <label for="PaymentTerm">Payment Terms</label>
+            <select style="color: #baa5ff" class="form-control" id="PaymentTerm" name="PaymentTerm"
+                    [value]="data.PaymentTerm" [(ngModel)]="objectArray.PaymentTerm">
+              <option value="" default>Select</option>
+              <option value="Net 1 Day">Net 1 Day</option>
+              <option value="Net 7 Day">Net 7 Day</option>
+              <option value="Net 14 Day">Net 14 Day</option>
+              <option value="option3">Net 30 Day</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="ProjectDescription">Project Description</label>
+        <input style="color: #baa5ff" type="text" class="form-control" id="ProjectDescription" name="ProjectDescription"
+               [value]="data.ProjectDescription" [(ngModel)]="objectArray.ProjectDescription">
+      </div>
+
+      <label style="font-size: 20px ; font-weight: bold">Item List</label>
+      <!-- ... Other form groups ... -->
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-4 mb-1">
+            <label for="ItemName">Item Name</label>
+            <input style="color: #baa5ff" type="text" class="form-control" id="ItemName" name="ItemName"
+                   [value]="data.ItemName" [(ngModel)]="objectArray.ItemName">
+          </div>
+          <div class="col-md-2 mb-1">
+            <label for="Qty">Qty.</label>
+            <input style="color: #baa5ff" type="text" class="form-control" id="Qty" name="Qty" maxlength="1"
+                   [value]="data.Qty" [(ngModel)]="objectArray.Qty">
+          </div>
+          <div class="col-md-3 mb-1">
+            <label for="price">Price</label>
+            <input style="color: #baa5ff" type="text" class="form-control" id="price" name="price" maxlength="5"
+                   [value]="data.price" [(ngModel)]="objectArray.price">
+          </div>
+          <div class="col-md-2 mb-1">
+            <label for="price" style="color: #baa5ff">Total</label>
+            <label style="padding-top: 10px"
+                   style="color: #baa5ff ; margin-top: 10px">{{calculateTotal(objectArray.price, objectArray.Qty)}}</label>
+          </div>
+          <div class="col-md-1 mb-2"
+               style="display: flex;justify-content: center;align-items: start;width: 0px; margin-top: 35px">
+            <label> </label>
+            <br><br>
+            <button style="background-color: transparent ; border: none ; cursor: pointer">
+              <div class="icon-container">
+                <i class='bx bxs-trash-alt' style="font-size: 23px ; color: #9996a4"></i>
+              </div>
+            </button>
+
+          </div>
+        </div>
+        <div class="d-flex justify-content-between mt-3">
+          <button type="button" (click)="UpdateInvoice()" class="btn btn-success" style="font-size: 18px">Update
+            Invoice
+          </button>
+        </div>
+      </div>
+
+    </form>
+
+
+  </div>
+</div>
+
+</body>
+</html>
+
+

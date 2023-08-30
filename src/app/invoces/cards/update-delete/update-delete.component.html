@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="update-delete.component.css">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+<body>
+<app-side-navbar></app-side-navbar>
+
+<div class="backdiv" routerLink="/invoices">
+  <button class="back">
+    <i class='bx bx-arrow-back'></i>
+  </button>
+</div>
+
+
+<div class="firstbox">
+  <div class="labels">
+    <label class="label1">
+      Status
+    </label>
+    <div class="paid">
+      <div class="point">
+        <div class="custom-color rounded-circle"></div>
+      </div>
+      <div>
+        <div class="ml-2">Paid</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="buutons">
+    <button class="btn btn-light" (click)="toggleSidebar()">Edit</button>
+    <button class="btn btn-danger" (click)="deleteInvoice(id)">Delete</button>
+    <button class="btn btn-success" (click)="MarkasPaid()">Mark as Paid</button>
+  </div>
+
+</div>
+
+<div class="secondbox">
+
+  <div class="firstRow">
+    <div class="idData">
+      <label style="font-weight: bold ; font-size: 18px">{{id.substring(0, 5)}}</label>
+      <label>Re-branding</label>
+    </div>
+
+    <div class="locationData">
+      <label>{{data.StreetAddress}}</label>
+      <label>{{data.City}}</label>
+      <label>{{data.PostCode}}</label>
+    </div>
+  </div>
+
+
+  <div class="secondRow">
+    <div class="idData2">
+      <div>
+        <label>Invoice Date</label>
+        <br>
+        <label style="font-weight: bold ; font-size: 18px">{{data.InvoiceDate}}</label>
+      </div>
+      <br>
+      <div>
+        <label>Payment Date</label>
+        <br>
+        <label style="font-weight: bold ; font-size: 18px">{{data.PaymentTerm}}</label>
+      </div>
+    </div>
+
+    <div class="idData3">
+      <div>
+        <label>Bill To</label>
+      </div>
+      <br>
+      <div>
+        <label>{{data.ClientName}}</label>
+        <br>
+        <label>{{data.ClientCountry}}</label>
+        <br>
+        <label>{{data.ClientCity}}</label>
+        <br>
+        <label>{{data.ClientStreetAddress}}</label>
+        <br>
+        <label>{{data.ClientPostCode}}</label>
+        <br>
+      </div>
+    </div>
+    <div class="locationData2">
+      <label>Sent To</label>
+      <br>
+      <label style="font-weight: bold">{{data.ClientEmail}}</label>
+    </div>
+  </div>
+
+
+  <div class="thirdRow">
+    <div class="idData4">
+      <label style="width: 25% ; text-align: center">Item Name</label>
+      <label style="width: 25% ; text-align: center">QTY.</label>
+      <label style="width: 25% ; text-align: center">Price</label>
+      <label style="width: 25% ; text-align: center">Total</label>
+    </div>
+    <div class="locationData3">
+      <label style="font-weight: bold ; font-size: 25px ; width: 25% ; text-align: center">{{data.ItemName}}</label>
+      <label style="font-weight: bold ; font-size: 25px ; width: 25% ; text-align: center">{{data.Qty}}</label>
+      <label style="font-weight: bold ; font-size: 25px ; width: 25% ; text-align: center">{{data.price}}</label>
+      <label style="font-weight: bold ; font-size: 25px ; width: 25% ; text-align: center">${{data.Total}}</label>
+    </div>
+  </div>
+
+
+</div>
+
+
+<app-slider-update [objectArray]="data" [isSidebarOpen]="isSidebarOpen"></app-slider-update>
+
+</body>
+</html>
+
+
+
