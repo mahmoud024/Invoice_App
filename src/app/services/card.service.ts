@@ -22,6 +22,11 @@ export class CardService {
     return this.fs.collection('Cards').snapshotChanges();
   }
 
+    updateIsPaidStatus(id: string, isPaid: boolean) {
+        return this.fs.collection('Cards').doc(id).update({isPaid: isPaid});
+    }
+
+
   deleteInvoice(id: string) {
     return this.fs.collection(`Cards`).doc(id).delete();
   }

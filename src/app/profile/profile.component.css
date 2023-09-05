@@ -16,8 +16,8 @@ body {
 .card {
   border-radius: 25px;
   -webkit-box-shadow: 20px 20px 20px 20px rgba(69, 90, 100, 0.08);
-  box-shadow: 0 11px 100px 0 #3f3956;
-  border: none;
+
+    border: none;
   margin-bottom: 30px;
 }
 

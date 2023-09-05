@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Card} from "../interfaces/card";
 import {CardsService} from "../services/cards.service";
 import {Subscription} from "rxjs";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-invoces',
@@ -10,7 +11,7 @@ import {Subscription} from "rxjs";
 })
 export class InvocesComponent implements OnInit, OnDestroy {
 
-  constructor(private gs: CardsService) {
+    constructor(private gs: CardsService, public translate: TranslateService) {
   }
 
 
@@ -25,7 +26,6 @@ export class InvocesComponent implements OnInit, OnDestroy {
         return {
           id: element.payload.doc.id,//.substring(0, 5)
           ClientName: element.payload.doc.data()['ClientName'],
-          price: element.payload.doc.data()['price'],
           InvoiceDate: element.payload.doc.data()['InvoiceDate'],
           isPaid: element.payload.doc.data()['isPaid'],
           StreetAddress: element.payload.doc.data()['StreetAddress'],
@@ -39,9 +39,7 @@ export class InvocesComponent implements OnInit, OnDestroy {
           ClientCity: element.payload.doc.data()['ClientCity'],
           PaymentTerm: element.payload.doc.data()['PaymentTerm'],
           ProjectDescription: element.payload.doc.data()['ProjectDescription'],
-          ItemName: element.payload.doc.data()['ItemName'],
-          Qty: element.payload.doc.data()['Qty'],
-          Total: element.payload.doc.data()['Total'],
+            items: element.payload.doc.data()['items']
         }
       })
     })

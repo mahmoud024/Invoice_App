@@ -3,11 +3,12 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
+    height: 100%;
   color: white;
   background-color: #141625;
   font-size: 15px;
   font-weight: lighter;
+    margin-top: 2%;
 }
 
 
@@ -33,6 +34,7 @@ body {
   width: 80vh;
   padding: 25px;
   border-radius: 20px;
+    margin-bottom: 2%;
 }
 
 .idData {
@@ -76,8 +78,9 @@ body {
   align-items: center;
   background-color: #252945;
   height: 90px;
-  border-radius: 10px 10px 0 0;
+    border-radius: 10px 10px 10px 10px;
   padding: 30px;
+    margin-bottom: 15px;
 
 }
 
@@ -107,7 +110,6 @@ body {
 
 .point {
   background-color: transparent;
-
 }
 
 .rounded-circle {
@@ -120,14 +122,60 @@ body {
   background-color: #4cd588; /* Replace with your chosen color */
 }
 
-.labels {
+
+.draft {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 0, 0, 0.12);
+    padding: 7px 15px 7px 15px;
+    border-radius: 10px;
+    color: #d54c4c;
+
+    width: 50.66%;
+    text-align: center;
+}
+
+.draft .point {
+    background-color: transparent;
+
+}
+
+.draft .rounded-circle {
+    width: 10px;
+    height: 10px;
+    margin-right: 13px;
+}
+
+.draft .custom-color2 {
+    background-color: #d54c4c; /* Replace with your chosen color */
+}
+
+
+.buutons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.labels1 {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
 .label1 {
-  margin-right: 50px;
+    margin-right: 20px;
+}
+
+.labels2 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.label2 {
+    margin-right: 20px;
 }
 
 

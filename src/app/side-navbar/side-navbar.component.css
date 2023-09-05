@@ -1,386 +1,98 @@
-/* Google Font Link */
-@import url('https://fonts.googleapis.com/css2?family=Borel&family=Cairo:wght@200&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Work+Sans:wght@500;600;700;800&display=swap');
-
+/* Reset default margin and padding for all elements */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
 }
 
+/* Apply basic styling to the body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    position: relative; /* Add position relative to body */
+}
+
+/* Style the sidebar container */
 .sidebar {
   position: fixed;
-  left: 0;
   top: 0;
-  height: 100%;
-  width: 78px;
-  background: #1a192f;
-  padding: 6px 14px;
-  z-index: 99;
-  transition: all 0.5s ease;
-}
-
-.sidebar.open {
-  width: 250px;
-}
-
-.sidebar .logo-details {
-  height: 60px;
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-
-.sidebar .logo-details .icon {
-  opacity: 0;
-  transition: all 0.5s ease;
-}
-
-.sidebar .logo-details .logo_name {
-  color: #fff;
-  font-size: 20px;
-  font-weight: 600;
-  opacity: 0;
-  transition: all 0.5s ease;
-}
-
-.sidebar.open .logo-details .icon,
-.sidebar.open .logo-details .logo_name {
-  opacity: 1;
-}
-
-.sidebar .logo-details #btn {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  font-size: 22px;
-  transition: all 0.4s ease;
-  font-size: 23px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.5s ease;
-}
-
-.sidebar.open .logo-details #btn {
-  text-align: right;
-}
-
-.sidebar i {
-  color: #fff;
-  height: 60px;
-  min-width: 50px;
-  font-size: 28px;
-  text-align: center;
-  line-height: 60px;
-}
-
-.sidebar .nav-list {
-  margin-top: 20px;
-  height: 100%;
-}
-
-.sidebar li {
-  position: relative;
-  margin: 8px 0;
-  list-style: none;
-}
-
-.sidebar li .tooltip {
-  position: absolute;
-  top: -20px;
-  left: calc(100% + 15px);
-  z-index: 3;
-  background: #fff;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-size: 15px;
-  font-weight: 400;
-  opacity: 0;
-  white-space: nowrap;
-  pointer-events: none;
-  transition: 0s;
-}
-
-.sidebar li:hover .tooltip {
-  opacity: 1;
-  pointer-events: auto;
-  transition: all 0.4s ease;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.sidebar.open li .tooltip {
-  display: none;
-}
-
-.sidebar input {
-  font-size: 15px;
-  color: #FFF;
-  font-weight: 400;
-  outline: none;
-  height: 50px;
-  width: 100%;
-  width: 50px;
-  border: none;
-  border-radius: 12px;
-  transition: all 0.5s ease;
-  background: #1d1b31;
-}
-
-.sidebar.open input {
-  padding: 0 20px 0 50px;
-  width: 100%;
-}
-
-.sidebar .bx-search {
-  position: absolute;
-  top: 50%;
   left: 0;
-  transform: translateY(-50%);
-  font-size: 22px;
-  background: #1d1b31;
-  color: #FFF;
-}
-
-.sidebar.open .bx-search:hover {
-  background: #1d1b31;
-  color: #FFF;
-}
-
-.sidebar .bx-search:hover {
-  background: #FFF;
-  color: #11101d;
-}
-
-.sidebar li a {
-  display: flex;
+    width: 5%;
   height: 100%;
-  width: 100%;
-  border-radius: 12px;
-  align-items: center;
-  text-decoration: none;
-  transition: all 0.4s ease;
-  background: #11101D;
+    background-color: #1E213A;
+    padding-top: 15px;
+    z-index: 1000; /* Set a high z-index to overlay all components */
+    transition: left 0.3s ease-in-out; /* Add transition for smooth slide-in/out */
 }
 
-.sidebar li a:hover {
-  background: #FFF;
-}
-
-.sidebar li a .links_name {
-  color: #fff;
-  font-size: 15px;
-  font-weight: 400;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.4s;
-}
-
-.sidebar.open li a .links_name {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.sidebar li a:hover .links_name,
-.sidebar li a:hover i {
-  transition: all 0.5s ease;
-  color: #11101D;
-}
-
-.sidebar li i {
-  height: 50px;
-  line-height: 50px;
-  font-size: 18px;
-  border-radius: 12px;
-}
-
-.sidebar li.profile {
-  position: fixed;
-  height: 60px;
-  width: 78px;
+/* Show the sidebar when a class is applied */
+.sidebar.active {
   left: 0;
-  bottom: -8px;
-  padding: 10px 14px;
-  background: #1d1b31;
-  transition: all 0.5s ease;
-  overflow: hidden;
 }
 
-.sidebar.open li.profile {
-  width: 250px;
-}
-
-.sidebar li .profile-details {
-  display: flex;
-  align-items: center;
-  flex-wrap: nowrap;
-}
-
-.sidebar li img {
-  height: 45px;
-  width: 45px;
-  object-fit: cover;
-  border-radius: 6px;
-  margin-right: 10px;
-}
-
-.sidebar li.profile .name,
-.sidebar li.profile .job {
-  font-size: 15px;
-  font-weight: 400;
-  color: #fff;
-  white-space: nowrap;
-}
-
-.sidebar li.profile .job {
-  font-size: 12px;
-}
-
-.sidebar .profile #log_out {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  background: #1d1b31;
-  width: 100%;
-  height: 60px;
-  line-height: 60px;
-  border-radius: 0px;
-  transition: all 0.5s ease;
-}
-
-.sidebar.open .profile #log_out {
-  width: 50px;
-  background: none;
-}
-
-.home-section {
-  position: relative;
-  background: #E4E9F7;
-  min-height: 100vh;
-  top: 0;
-  left: 78px;
-  width: calc(100% - 78px);
-  transition: all 0.5s ease;
-  z-index: 2;
-}
-
-.sidebar.open ~ .home-section {
-  left: 250px;
-  width: calc(100% - 250px);
-}
-
-.home-section .text {
-  display: inline-block;
-  color: #312e52;
-  font-size: 25px;
-  font-weight: 500;
-  margin: 18px
-}
-
-
-.navbarContent {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: column;
-
-  height: 100%;
-}
-
+/* Style the logo */
 .logo {
-  height: 5%;
-}
-
-.dark {
-  height: 5%;
-  margin-top: 70vh;
-}
-
-.dark button {
-  background-color: transparent;
-  border: none;
-}
-
-.dark i:hover {
-  color: #7C5DF9;
-  font-size: 33px;
-}
-
-.logout {
-  height: 5%;
-}
-
-.logout button {
-  background-color: transparent;
-  border: none;
-}
-
-.logout i:hover {
-  color: #7C5DF9;
-  font-size: 33px;
-
-}
-
-.profile {
-  height: 5%;
-  margin-bottom: 15px;
+    text-align: center;
 }
 
 .logo i {
-  font-size: 60px;
+    font-size: 60px;
+}
+
+/* Style the bottom buttons section */
+.bottom-buttons {
+  position: absolute;
+    bottom: 20px;
+  width: 100%;
+}
+
+/* Style the buttons */
+.dark,
+.language,
+.logout {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.profile {
+    text-align: center;
+    margin-bottom: 0px;
+}
+
+
+button {
+  background-color: transparent;
+  border: none;
+    cursor: pointer;
+    color: #fff;
+    font-size: 28px;
+}
+
+button:hover {
+  color: #7C5DF9;
+    font-size: 27px;
 }
 
 .logo i:hover {
   color: #7C5DF9;
-  font-size: 65px;
+    font-size: 63px;
 }
 
-.logo button {
-  background-color: transparent;
-  border: none;
-}
-
-/*.rounded-image {*/
-/*  width: 35px;*/
-/*  height: 35px;*/
-/*  border-radius: 50%;*/
-/*  overflow: hidden; !* Ensure the image stays within the rounded border *!*/
-/*}*/
-
-/*.rounded-image:hover {*/
-/*  width: 40px;*/
-/*  height: 40px;*/
-/*}*/
-
-
-.profile i:hover {
-  font-size: 32px;
-  color: #7C5DF9;
-}
-
-
-.profile button {
-  background-color: transparent;
-  border: none;
+/* Style the horizontal divider */
+.hr {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 15%;
 }
 
 .divider {
-  margin: 10px 0; /* Adjust spacing as needed */
-  border: none; /* Remove default border */
-  border-top: 1px solid white; /* Add custom top border */
-}
-
-.hr {
-  height: 10px;
+    border: 0.5px solid #555;
   width: 100%;
 }
 
-@media (max-width: 420px) {
-  .sidebar li .tooltip {
-    display: none;
+/* Responsive sidebar for smaller screens */
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 10%;
   }
 }

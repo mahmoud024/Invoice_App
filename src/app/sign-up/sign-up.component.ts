@@ -5,6 +5,7 @@ import firebase from "firebase/compat";
 import {User} from "../interfaces/user_Interface";
 import {UserService} from "../services/user.service";
 import {Router} from "@angular/router";
+import * as string_decoder from "string_decoder";
 
 
 @Component({
@@ -15,15 +16,16 @@ import {Router} from "@angular/router";
 export class SignUpComponent {
   errorMsg: string = "";
 
-  constructor(private as: AuthService, private us: UserService, private router: Router) {
-  }
+    constructor(private as: AuthService, private us: UserService, private router: Router) {
+    }
 
   Signup(form) {
     let data: User = form.value;
     this.as.signup(data.email, data.password)
       .then(result => {
         this.errorMsg = "";
-        this.us.addNewUser(result.user.uid, data.name, data.email).then(() => {
+          let ids = result.user.uid;
+          this.us.addNewUser(result.user.uid, data.name, data.email, data.password, ids).then(() => {
           this.router.navigate(['/'])
         })
       })
@@ -33,7 +35,7 @@ export class SignUpComponent {
   }
 
 
-  inputValue1: string = '';
+    inputValue1: string = '';
 
   isInputInvalid1(): boolean {
     return !this.inputValue1; // Modify this condition based on your validation criteria

@@ -5,3 +5,18 @@
   height: 100vh;
 }
 
+.app2 {
+  position: relative;
+}
+
+.app2 > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

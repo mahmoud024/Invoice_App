@@ -22,12 +22,25 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {UpdateDeleteComponent} from './invoces/cards/update-delete/update-delete.component';
 import {SliderUpdateComponent} from './invoces/cards/update-delete/slider-update/slider-update.component';
 import {AuthService} from "./services/auth.service";
-import {AuthGuard} from "@angular/fire/auth-guard";
 import {GuardService} from "./services/guard.service";
+import {AngularSvgIconModule} from 'angular-svg-icon';
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import {HttpClient} from "@angular/common/http";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import {HttpClientModule} from '@angular/common/http';
+import {NavigationComponent} from './navigation/navigation.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatButtonModule} from '@angular/material/button';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatIconModule} from '@angular/material/icon';
+import {MatListModule} from '@angular/material/list';
+import {UpdatedComponent} from './invoces/cards/update-delete/updated/updated.component';
+
 
 
 
 @NgModule({
+    bootstrap: [AppComponent],
   declarations: [
     AppComponent,
     SideNavbarComponent,
@@ -39,7 +52,9 @@ import {GuardService} from "./services/guard.service";
     CardsComponent,
     AddInvoiceComponent,
     UpdateDeleteComponent,
-    SliderUpdateComponent
+      SliderUpdateComponent,
+      NavigationComponent,
+      UpdatedComponent
   ],
   imports: [
     BrowserModule,
@@ -59,8 +74,28 @@ import {GuardService} from "./services/guard.service";
     AngularFireAuthModule,
     MatDialogModule,
     ReactiveFormsModule,
+      BrowserAnimationsModule,
+      AngularSvgIconModule,
+      HttpClientModule,
+      TranslateModule.forRoot({
+          defaultLanguage: 'ar',
+          loader: {
+              provide: TranslateLoader,
+              useFactory: createTranslationLoader,
+              deps: [HttpClient]
+          }
+      }),
+      MatToolbarModule,
+      MatButtonModule,
+      MatSidenavModule,
+      MatIconModule,
+      MatListModule
+
   ],
-  providers: [AuthService, GuardService],
-  bootstrap: [AppComponent]
+    providers: [AuthService, GuardService]
 })
 export class AppModule { }
+
+export function createTranslationLoader(http: HttpClient) {
+    return new TranslateHttpLoader(http, './assets/i18n/', '.json')
+}

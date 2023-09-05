@@ -13,9 +13,11 @@ export interface Card {
   InvoiceDate?: string,
   PaymentTerm?: string,
   ProjectDescription?: string,
-  ItemName?: string,
-  Qty?: string,
-  price?: string,
   isPaid?: boolean,
-  Total?: number,
+    items?: {
+        itemName: string;
+        qty: number;
+        price: number;
+        total: number;
+    }[];
 }

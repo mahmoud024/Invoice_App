@@ -1,5 +1,16 @@
-<!--<app-side-navbar></app-side-navbar>-->
-<!--<app-profile></app-profile>-->
-<!--<app-invoces></app-invoces>-->
-<router-outlet></router-outlet>
-<!--<app-add-invoice></app-add-invoice>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="app.component.css">
+</head>
+<body>
+<div class="app">
+  <div class="app2" [@router]="myOutlet.activatedRouteData['index']">
+    <router-outlet #myOutlet="outlet"></router-outlet>
+  </div>
+</div>
+</body>
+</html>

@@ -14,20 +14,19 @@
 <body>
 <div class="head">
   <div>
-    <label class="invoice">Invoices</label>
+      <label class="invoice">{{'INVOICES' | translate}}</label>
     <br>
-    <label>There are <span
-      style="color: #7C5DF9 ; font-weight: bold ; font-size: 20px">{{documentCount$ | async}}</span> total
-      invoices</label>
+      <label>{{'THEREARE' | translate}}<span
+              style="color: #7C5DF9 ; font-weight: bold ; font-size: 20px">{{documentCount$ | async}} </span>{{'TOTALINVOICE' | translate}}
+      </label>
   </div>
 
 
   <div class="select-container">
-    <select id="dropdown" class="custom-select">
-      <option value="">Filter by status</option>
-      <option value="option1">Draft</option>
-      <option value="option2">Pending</option>
-      <option value="option3">Paid</option>
+      <select id="dropdown" class="custom-select" [(ngModel)]="selectedFilter" (change)="onFilterChange()">
+          <option value="">{{'FILTERBY' | translate}}</option>
+          <option value="draft">{{'DRAFT' | translate}}</option>
+          <option value="paid">{{'PAID' | translate}}</option>
     </select>
   </div>
 
@@ -35,11 +34,14 @@
     <span class="btn-label">
       <i class='bx bxs-plus-circle'></i>
     </span>
-    <span style="padding-left: 5px">New Invoice</span>
+      <span style="padding-left: 5px">{{'NEWINVOICE' | translate}}</span>
   </button>
 
 </div>
-<app-add-invoice [isSidebarOpen]="isSidebarOpen"></app-add-invoice>
+<div>
+    <app-add-invoice [isSidebarOpen]="isSidebarOpen"></app-add-invoice>
+</div>
+
 
 </body>
 </html>

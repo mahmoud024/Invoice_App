@@ -1,7 +1,8 @@
 body {
   width: 100vh;
-  height: 100%;
-  background-color: transparent;
+    height: 10%;
+    margin-bottom: 0%;
+    background-color: transparent !important;
 }
 
 
@@ -9,11 +10,11 @@ body {
   height: 100px;
   display: flex;
   align-items: center;
+
 }
 
 .align-items-center {
   width: 100%;
-
 }
 
 .one {
@@ -65,7 +66,7 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: #202B41;
+    background-color: rgba(0, 255, 0, 0.08);
   padding: 7px 15px 7px 15px;
   border-radius: 10px;
   color: #4cd588;
@@ -84,6 +85,54 @@ body {
   height: 10px;
   margin-right: 13px;
 }
+
+.custom-color {
+    background-color: #4cd588; /* Replace with your chosen color */
+}
+
+.draft {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 0, 0, 0.12);
+    padding: 7px 15px 7px 15px;
+    border-radius: 10px;
+    color: #d54c4c;
+
+    width: 16.66%;
+    text-align: center;
+}
+
+.draft .point {
+    background-color: transparent;
+
+}
+
+.draft .rounded-circle {
+    width: 10px;
+    height: 10px;
+    margin-right: 13px;
+}
+
+.draft .custom-color2 {
+    background-color: #d54c4c; /* Replace with your chosen color */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .price {
   font-weight: bold;
@@ -104,11 +153,6 @@ body {
 .final:hover {
   background-color: #767ba2;
   color: #1d1b31;
-}
-
-
-.custom-color {
-  background-color: #4cd588; /* Replace with your chosen color */
 }
 
 

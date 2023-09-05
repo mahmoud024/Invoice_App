@@ -20,28 +20,6 @@ body {
   align-items: center;
 }
 
-/*.addbutton{*/
-/*  background-color:#7C5DF9;*/
-/*  border-radius: 25px;*/
-/*  border: none;*/
-/*  padding: 5px 15px 5px 5px;*/
-/*  color: white;*/
-/*  display: flex;*/
-/*  justify-content: center;*/
-/*  align-items: center;*/
-/*}*/
-
-/*.addbutton:hover {*/
-/*  background-color: #9479ff;*/
-
-/*}*/
-
-/*.addbutton i {*/
-/*  padding-right: 10px;*/
-/*  color: white;*/
-/*  font-size: 35px;*/
-/*}*/
-
 .label {
   font-size: 22px;
 }

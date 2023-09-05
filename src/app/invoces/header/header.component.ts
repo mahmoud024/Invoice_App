@@ -1,7 +1,9 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {map, Observable} from "rxjs";
 import {animate, state, style, transition, trigger} from "@angular/animations";
+import {TranslateService} from "@ngx-translate/core";
+import {FilterService} from "../../services/filter.service";
 
 
 @Component({
@@ -9,8 +11,10 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent {
-
+export class HeaderComponent implements OnInit {
+    constructor(private firestore: AngularFirestore, public translate: TranslateService, private filterService: FilterService) {
+        this.getDocumentCount();
+    }
 
   isSidebarOpen: boolean = true;
 
@@ -19,12 +23,19 @@ export class HeaderComponent {
   }
 
 
+    selectedFilter: string = ''; // Initialize with an empty filter
+    onFilterChange() {
+        this.filterService.setFilter(this.selectedFilter);
+        console.log("selected is = ", this.selectedFilter)
+
+    }
+
+    ngOnInit() {
+    }
+
+
   // Counter Cards
   documentCount$: Observable<number>;
-
-  constructor(private firestore: AngularFirestore) {
-    this.getDocumentCount();
-  }
 
   getDocumentCount() {
     const collectionRef = this.firestore.collection('Cards'); // Replace with your collection name

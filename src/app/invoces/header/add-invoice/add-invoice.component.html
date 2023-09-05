@@ -16,63 +16,63 @@
     <button class="close" (click)="closeSidebar()">
       <i class='bx bx-x'></i>
     </button>
-    <label class="mb-4" style="color:white; font-weight: bold; font-size: 27px">Add New Invoice</label>
+    <label class="mb-4" style="color:white; font-weight: bold; font-size: 27px">{{'NEWINVOICE' | translate}}</label>
     <br>
-    <label style="color: #7C5DF9 ; font-size: 12px">Bill From</label>
+    <label style="color: #7C5DF9 ; font-size: 12px">{{'BILLFROM' | translate}}</label>
 
-    <form #x="ngForm" (ngSubmit)="add(x)">
+    <form [formGroup]="invoiceForm" (ngSubmit)="add()" novalidate>
       <div class="form-group">
-        <label for="StreetAddress">Street Address</label>
-        <input ngModel type="text" class="form-control" id="StreetAddress" name="StreetAddress">
+        <label for="StreetAddress">{{'STREETADDRESS' | translate}}</label>
+        <input required formControlName="StreetAddress" type="text" class="form-control" id="StreetAddress">
       </div>
 
       <div class="form-group">
         <div class="row">
           <div class="col-md-4 mb-1">
-            <label for="detail1">City</label>
-            <input ngModel type="text" class="form-control" id="detail1" name="City">
+            <label for="detail1">{{'CITY' | translate}}</label>
+            <input formControlName="City" type="text" class="form-control" id="detail1">
           </div>
           <div class="col-md-4 mb-1">
-            <label for="detail2">PostCode</label>
-            <input ngModel type="text" class="form-control" id="detail2" name="PostCode">
+            <label for="detail2">{{'POSTCODE' | translate}}</label>
+            <input formControlName="PostCode" type="text" class="form-control" id="detail2">
           </div>
           <div class="col-md-4 mb-1">
-            <label for="detail3">Country</label>
-            <input ngModel type="text" class="form-control" id="detail3" name="Country">
+            <label for="detail3">{{'COUNTRY' | translate}}</label>
+            <input formControlName="Country" type="text" class="form-control" id="detail3">
           </div>
         </div>
       </div>
 
-      <label style="color: #7C5DF9 ; font-size: 12px">Bill To</label>
+      <label style="color: #7C5DF9 ; font-size: 12px">{{'BILLTO' | translate}}</label>
 
       <div class="form-group">
-        <label for="name">Client's Name</label>
-        <input ngModel type="text" class="form-control" id="name" name="ClientName">
+        <label for="name">{{'CLIENTNAME' | translate}}</label>
+        <input formControlName="ClientName" type="text" class="form-control" id="name">
       </div>
 
       <div class="form-group">
-        <label for="invoiceName2">Client's Email</label>
-        <input ngModel type="text" class="form-control" id="invoiceName2" name="ClientEmail">
+        <label for="invoiceName2">{{'CLIENTEMAIL' | translate}}</label>
+        <input formControlName="ClientEmail" type="text" class="form-control" id="invoiceName2">
       </div>
 
       <div class="form-group">
-        <label for="invoiceName3">Street Address</label>
-        <input ngModel type="text" class="form-control" id="invoiceName3" name="ClientStreetAddress">
+        <label for="invoiceName3">{{'CLIENTADDRESS' | translate}}</label>
+        <input formControlName="ClientStreetAddress" type="text" class="form-control" id="invoiceName3">
       </div>
 
       <div class="form-group">
         <div class="row">
           <div class="col-md-4 mb-1">
-            <label for="detail4">City</label>
-            <input ngModel type="text" class="form-control" id="detail4" name="ClientCity">
+            <label for="detail4">{{'CLIENTCITY' | translate}}</label>
+            <input formControlName="ClientCity" type="text" class="form-control" id="detail4">
           </div>
           <div class="col-md-4 mb-1">
-            <label for="detail5">PostCode</label>
-            <input ngModel type="text" class="form-control" id="detail5" name="ClientPostCode">
+            <label for="detail5">{{'CLIENTPOSTCODE' | translate}}</label>
+            <input formControlName="ClientPostCode" type="text" class="form-control" id="detail5">
           </div>
           <div class="col-md-4 mb-1">
-            <label for="detail6">Country</label>
-            <input ngModel type="text" class="form-control" id="detail6" name="ClientCountry">
+            <label for="detail6">{{'CLIENTCOUNTRY' | translate}}</label>
+            <input formControlName="ClientCountry" type="text" class="form-control" id="detail6">
           </div>
         </div>
       </div>
@@ -82,69 +82,92 @@
       <div class="form-group">
         <div class="row">
           <div class="col-md-6 mb-1">
-            <label for="dateField">Invoice Date</label>
-            <input ngModel type="date" class="form-control" id="dateField" name="InvoiceDate">
+            <label for="dateField">{{'INVOICEDATE' | translate}}</label>
+            <input formControlName="InvoiceDate" type="date" class="form-control" id="dateField">
           </div>
           <div class="col-md-6 mb-1">
-            <label for="comboBox">Payment Terms</label>
-            <select [(ngModel)]="selectedValue" class="form-control" id="comboBox" name="PaymentTerms">
-              <option value="" default>Select</option>
-              <option value="Net 1 Day">Net 1 Day</option>
-              <option value="Net 7 Day">Net 7 Day</option>
-              <option value="Net 14 Day">Net 14 Day</option>
-              <option value="Net 30 Day">Net 30 Day</option>
+            <label for="comboBox">{{'PAYMENTTERM' | translate}}</label>
+            <select formControlName="PaymentTerm" class="form-control" id="comboBox"
+                    (change)="onPaymentTermChange($event)">
+              <option value="Net 1 Day">{{'Net1Day' | translate}}</option>
+              <option value="Net 7 Day">{{'Net7Day' | translate}}</option>
+              <option value="Net 14 Day">{{'Net14Day' | translate}}</option>
+              <option value="Net 30 Day">{{'Net30Day' | translate}}</option>
             </select>
           </div>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="ProjectDescription">Project Description</label>
-        <input ngModel type="text" class="form-control" id="ProjectDescription" name="Description">
+        <label for="ProjectDescription">{{'PROJECTDESCRIPTION' | translate}}</label>
+        <input formControlName="Description" type="text" class="form-control" id="ProjectDescription">
       </div>
 
-      <label style="font-size: 20px ; font-weight: bold">Item List</label>
-      <!-- ... Other form groups ... -->
-      <div class="form-group">
-        <div class="row">
-          <div class="col-md-4 mb-1">
-            <label for="detail7">Item Name</label>
-            <input ngModel type="text" class="form-control" id="detail7" name="ItemName">
-          </div>
-          <div class="col-md-2 mb-1">
-            <label for="detail8">Qty.</label>
-            <input ngModel [(ngModel)]="quantity" maxlength="1" type="text" class="form-control" id="detail8"
-                   name="Qty">
-          </div>
-          <div class="col-md-3 mb-1">
-            <label for="detail9">Price</label>
-            <input ngModel [(ngModel)]="price" maxlength="5" type="text" minlength="8" class="form-control" id="detail9"
-                   name="Price">
-          </div>
-          <div class="col-md-2 mb-1">
-            <label>Total</label>
-            <br>
-            <label style="padding-top: 10px; color: #4cd588 ; font-weight: bold">{{calculateTotal()}}</label>
-          </div>
-          <div class="col-md-1 mb-2"
-               style="display: flex;justify-content: center;align-items: start;width: 0px; margin-top: 35px">
-            <label> </label>
-            <br><br>
-            <button style="background-color: transparent ; border: none ; cursor: pointer">
-              <div class="icon-container">
-                <i class='bx bxs-trash-alt' style="font-size: 23px ; color: #9996a4"></i>
-              </div>
-            </button>
+      <label style="font-size: 20px ; font-weight: bold">{{'ITEMLIST' | translate}}</label>
 
+      <div class="form-group" *ngIf="itemform.controls.items['controls'].length === 0">
+        <div class="row">
+          <div class="col-md-6 mb-1" style="width: 100%; text-align: center">
+            <label>{{'ITEMLISTEMPTY' | translate}}</label>
           </div>
         </div>
       </div>
 
-      <div class="d-flex justify-content-between mt-3">
-        <button type="submit" class="btn btn-success">Add Invoice</button>
+      <!-- Initial items fetched from Firestore -->
+      <div class="form-group">
+        <form [formGroup]="itemform" (ngSubmit)="saved()" novalidate>
+          <div class="row">
+            <div formArrayName="items" style="padding-right: 0;">
+              <div *ngFor="let item of itemform.controls.items['controls'];index as i" [formGroupName]="i"
+                   style="display: flex;flex-direction: row;justify-content: space-between;">
+                <div class="col-md-4 mb-1">
+                  <label for="itemDetail1">{{'ITEMNAME' | translate}}</label>
+                  <input required formControlName="itemName" type="text" class="form-control" id="itemDetail1"
+                         name="ItemName">
+                </div>
+                <div class="col-md-1 mb-1">
+                  <label for="itemDetail2">{{'ITEMQTY' | translate}}.</label>
+                  <input required formControlName="qty" maxlength="1" type="text" class="form-control" id="itemDetail2"
+                         name="Qty">
+                </div>
+                <div class="col-md-2 mb-1">
+                  <label for="itemDetail3">{{'ITEMPRICE' | translate}}</label>
+                  <input required formControlName="price" maxlength="5" type="text" minlength="8" class="form-control"
+                         id="itemDetail3" name="Price">
+                </div>
+
+                <div class="col-md-3 mb-1">
+                  <label for="itemDetail4">{{'ITEMTOTAL' | translate}}</label>
+                  <input required formControlName="total"
+                         [value]="itemform.controls.items['controls'][i].get('total').value" type="text"
+                         class="form-control" id="itemDetail4" name="total">
+                </div>
+
+                <button (click)="deleteRow(i)"
+                        style="background-color: transparent ; border: none ; cursor: pointer ; display: flex; justify-content: center ; align-items: start;width: 0px; margin-top: 35px">
+                  <div class="icon-container">
+                    <i class='bx bxs-trash-alt' style="font-size: 23px ; color: #9996a4"></i>
+                  </div>
+                </button>
+              </div>
+              <div class="d-flex justify-content-between mt-3">
+                <button type="button" (click)="addItem()" class="btn btn-success">
+                  + {{'ADDNEWITEM' | translate}}</button>
+              </div>
+            </div>
+            <br>
+          </div>
+        </form>
       </div>
-      <div class="d-flex justify-content-between mt-3">
-        <button (click)="clearForm(x)" type="button" class="btn btn-danger">Clear Data</button>
+
+      <div class="FinalButton">
+        <div class="d-flex justify-content-between mt-3" style="width: 20%">
+          <button (click)="clearForm()" type="button" class="btn btn-danger">{{'CLEAR' | translate}}</button>
+        </div>
+        <div class="d-flex justify-content-between mt-3">
+          <button type="submit" (click)="saved()" class="btn btn-success"
+                  style="overflow: hidden ">{{'SAVECHANGES' | translate}}</button>
+        </div>
       </div>
     </form>
   </div>

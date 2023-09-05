@@ -1,9 +1,12 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {NgForm} from "@angular/forms";
+import {Component, Input, OnInit} from '@angular/core';
+import {FormArray, FormBuilder, FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
 import {CardService} from "../../../services/card.service";
 import {InvocesComponent} from "../../invoces.component";
 import {Card} from "../../../interfaces/card";
-import {BehaviorSubject} from "rxjs";
+import {AngularFirestore} from "@angular/fire/compat/firestore";
+import firebase from "firebase/compat";
+import {Item} from "../../../interfaces/item";
+import {TranslateService} from "@ngx-translate/core";
 
 
 @Component({
@@ -11,68 +14,113 @@ import {BehaviorSubject} from "rxjs";
   templateUrl: './add-invoice.component.html',
   styleUrls: ['./add-invoice.component.css']
 })
-export class AddInvoiceComponent {
-  constructor(private cs: CardService, private ds: InvocesComponent) {
-  }
+export class AddInvoiceComponent implements OnInit {
 
-  closeSidebar() {
-    this.isSidebarOpen = true;
-  }
 
   @Input() isSidebarOpen: boolean = true;
+  selectedValue: string = ''; // Default value
+  invoiceForm: FormGroup;
+  isSaved: boolean = false;
+  isButtonDisabled = false;
+  itemform: any;
 
-  selectedValue: string; // This property holds the selected value
-
-  getSelectedValue(event: any) {
-
-    // Prints selected value
+  onPaymentTermChange(event: any) {
     this.selectedValue = event.target.value;
   }
 
-  quantity: number = null;
-  price: number = null;
-  initialTotal: number = 0;
+  constructor(private cs: CardService, private formbuilder: FormBuilder, private firestore: AngularFirestore, public translate: TranslateService) {
+    // this.total = this.calculateTotal();
+    this.itemform = this.formbuilder.group({
+      items: this.formbuilder.array([])
+    })
 
-  calculateTotal(): number {
-    return this.quantity * this.price;
   }
 
-  add(x: NgForm) {
+  /********************************************************************************/
+  ngOnInit(): void {
+    this.invoiceForm = this.formbuilder.group({
+      StreetAddress: [''],
+      City: ['', Validators.required],
+      PostCode: ['', Validators.required],
+      Country: ['', Validators.required],
+      ClientName: ['', Validators.required],
+      ClientEmail: ['', Validators.required],
+      ClientStreetAddress: ['', Validators.required],
+      ClientPostCode: ['', Validators.required],
+      ClientCountry: ['', Validators.required],
+      ClientCity: ['', Validators.required],
+      InvoiceDate: [new Date().toISOString(), Validators.required], // Initialize with a default date
+      PaymentTerm: [this.selectedValue, Validators.required], // Default value
+      Description: ['', Validators.required],
+      // Define other form controls with their initial values and validators here
+    });
+  }
+
+  saved() {
+    if (!this.isSaved) {
+      this.isSaved = true;
+      this.isButtonDisabled = true;
+
+      const items = this.items().controls.map((control) => control.value);
+    }
+    // this.closeSidebar();
+
+  }
+
+  /********************************************************************************/
+
+  add() {
     const formattedCurrentDueDate = this.formatCurrentDueDate();
+
+    // Create an array to store the items
+    const items = [];
+
+    // Loop through the items in your FormArray and add them to the items array
+    const formItems = this.itemform.get('items') as FormArray;
+    formItems.controls.forEach((control) => {
+      items.push({
+        itemName: control.get('itemName').value,
+        qty: control.get('qty').value,
+        price: control.get('price').value,
+        total: control.get('total').value,
+      });
+    });
+    const formData = this.invoiceForm.value;
+
+    // Add debugging statements
+    console.log('FormData:', formData);
+    console.log('SelectedValue:', this.selectedValue);
+
     let data: Card = {
-      StreetAddress: x.value.StreetAddress,
-      City: x.value.City,
-      PostCode: x.value.PostCode,
-      Country: x.value.Country,
-      ClientName: x.value.ClientName,
-      ClientEmail: x.value.ClientEmail,
-      ClientStreetAddress: x.value.ClientStreetAddress,
-      ClientPostCode: x.value.ClientPostCode,
-      ClientCountry: x.value.ClientCountry,
-      ClientCity: x.value.ClientCity,
+      StreetAddress: formData.StreetAddress,
+      City: formData.City,
+      PostCode: formData.PostCode,
+      Country: formData.Country,
+      ClientName: formData.ClientName,
+      ClientEmail: formData.ClientEmail,
+      ClientStreetAddress: formData.ClientStreetAddress,
+      ClientPostCode: formData.ClientPostCode,
+      ClientCountry: formData.ClientCountry,
+      ClientCity: formData.ClientCity,
       InvoiceDate: this.formatCurrentDueDate(),
       PaymentTerm: this.selectedValue,
-      ProjectDescription: x.value.Description,
-      ItemName: x.value.ItemName,
-      Qty: x.value.Qty,
-      price: x.value.Price,
-      Total: this.calculateTotal(),
-      isPaid: true,
-    }
+      ProjectDescription: formData.Description,
+      isPaid: false,
+      items: items, // Add the items array to the data object
+    };
 
-    console.log(data)
-    this.cs.addToCard(data);
+    console.log('Data:', data);
+    this.cs.addToCard(data).then(() => {
+      this.closeSidebar();
+    })
   }
 
-  // selectedValued: string = ''; // Add this property and set it to empty string
-  clearForm(x: NgForm) {
-    x.resetForm(); // Reset the form to its initial state
-    this.quantity = null;
-    this.price = null;
-    this.initialTotal = null;
+  clearForm() {
+    this.invoiceForm.reset();
+    const items = this.itemform.get('items') as FormArray;
+    items.clear(); // This will remove all items from the FormArray
     this.selectedValue = ''; // Reset the selected value for Payment Terms
   }
-
 
   formatCurrentDueDate(): string {
     const currentDate = new Date();
@@ -89,5 +137,44 @@ export class AddInvoiceComponent {
 
     return `Due ${day} ${monthName} ${year}`;
   }
+
+  deleteRow(i: any) {
+    this.items().removeAt(i);
+    console.log(i);
+  }
+
+  closeSidebar() {
+    this.isSidebarOpen = true;
+  }
+
+  addItem() {
+    let newRows = this.formbuilder.group({
+      itemName: [''],
+      qty: [''],
+      price: [''],
+      total: ['']
+    });
+
+    // Subscribe to value changes of qty and price controls
+    newRows.get('qty').valueChanges.subscribe(qty => {
+      const price = +newRows.get('price').value; // Convert to number
+      const totalControl = newRows.get('total') as FormControl;
+      totalControl.setValue(price * +qty); // Calculate and set the total
+    });
+
+    newRows.get('price').valueChanges.subscribe(price => {
+      const qty = +newRows.get('qty').value; // Convert to number
+      const totalControl = newRows.get('total') as FormControl;
+      totalControl.setValue(+price * qty); // Calculate and set the total
+    });
+
+    // Push the newRows FormGroup into the FormArray after setting up subscriptions
+    this.items().push(newRows);
+  }
+
+  items(): FormArray {
+    return this.itemform.get('items') as FormArray;
+  }
+
 
 }

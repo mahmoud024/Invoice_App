@@ -8,37 +8,54 @@
   <!-- Boxicons CDN Link -->
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 
 <div class="sidebar">
   <div class="navbarContent">
     <div class="logo">
-      <a routerLink="/invoices"> <!-- LOGO -->
+        <button routerLink="/invoices">
         <i class='bx bxl-angular' id="btn"></i>
-      </a>
+        </button>
     </div>
-    <div class="dark">
-      <button><!-- DarkMood -->
-        <i class='bx bx-moon'></i>
-      </button>
-    </div>
-    <div class="logout">
-      <button (click)="logoutt()"><!-- Logout -->
-        <i class='bx bx-log-out-circle'></i>
-      </button>
-    </div>
-    <div class="hr">
-      <hr class="divider"> <!-- Add HR element -->
-    </div>
-    <div class="profile">
-      <a routerLink="/profile"><!-- Profile -->
-        <!--        <img src="./assets/profile.png" alt="" class="rounded-image">-->
-        <i class='bx bxs-user'></i>
-      </a>
-    </div>
-  </div>
 
+      <div class="bottom-buttons">
+          <div class="dark">
+              <button (click)="DarkMood()">
+                  <i *ngIf="mood==false" class='bx bx-moon'></i>
+                  <i *ngIf="mood==true" class='bx bx-sun'></i>
+              </button>
+          </div>
+
+          <div class="language">
+              <button (click)="toggleLanguage()" style="background-color: transparent ; border: none">
+                  <i class="fa fa-language"></i>
+              </button>
+          </div>
+
+          <div class="logout">
+              <button (click)="logoutt()">
+                  <i class='bx bx-log-out-circle'></i>
+              </button>
+          </div>
+
+          <div class="hr">
+              <hr class="divider">
+          </div>
+
+          <div class="profile">
+              <button routerLink="/profile">
+                  <i class='bx bxs-user'></i>
+              </button>
+          </div>
+
+
+      </div>
+
+
+  </div>
 </div>
+
 </body>
 </html>

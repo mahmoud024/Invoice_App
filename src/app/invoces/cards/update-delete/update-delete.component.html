@@ -19,24 +19,40 @@
 
 
 <div class="firstbox">
-  <div class="labels">
+    <div class="labels1" *ngIf="ispaid">
     <label class="label1">
-      Status
+        {{'STATUS' | translate}}
     </label>
+
     <div class="paid">
       <div class="point">
         <div class="custom-color rounded-circle"></div>
       </div>
       <div>
-        <div class="ml-2">Paid</div>
+          <div class="ml-2">{{'PAID' | translate}}</div>
+      </div>
+    </div>
+    </div>
+
+    <div class="labels2" *ngIf="!ispaid">
+        <label class="label2">
+            {{'STATUS' | translate}}
+        </label>
+        <div class="draft">
+            <div class="point">
+                <div class="custom-color2 rounded-circle"></div>
+            </div>
+            <div>
+                <div class="ml-2">{{'DRAFT' | translate}}</div>
       </div>
     </div>
   </div>
 
+
   <div class="buutons">
-    <button class="btn btn-light" (click)="toggleSidebar()">Edit</button>
-    <button class="btn btn-danger" (click)="deleteInvoice(id)">Delete</button>
-    <button class="btn btn-success" (click)="MarkasPaid()">Mark as Paid</button>
+      <button class="btn btn-light" (click)="toggleSidebar()">{{'EDIT' | translate}}</button>
+      <button class="btn btn-danger" (click)="deleteInvoice(id)">{{'DELETE' | translate}}</button>
+      <button class="btn btn-success" *ngIf="!ispaid" (click)="MarkasPaid()">{{'MARKASPAID' | translate}}</button>
   </div>
 
 </div>
@@ -46,7 +62,7 @@
   <div class="firstRow">
     <div class="idData">
       <label style="font-weight: bold ; font-size: 18px">{{id.substring(0, 5)}}</label>
-      <label>Re-branding</label>
+        <label>{{'REBRANDING' | translate}}</label>
     </div>
 
     <div class="locationData">
@@ -60,13 +76,13 @@
   <div class="secondRow">
     <div class="idData2">
       <div>
-        <label>Invoice Date</label>
+          <label>{{'INVOICEDATE' | translate}}</label>
         <br>
         <label style="font-weight: bold ; font-size: 18px">{{data.InvoiceDate}}</label>
       </div>
       <br>
       <div>
-        <label>Payment Date</label>
+          <label>{{'PAYMENTDATE' | translate}}</label>
         <br>
         <label style="font-weight: bold ; font-size: 18px">{{data.PaymentTerm}}</label>
       </div>
@@ -74,7 +90,7 @@
 
     <div class="idData3">
       <div>
-        <label>Bill To</label>
+          <label>{{'BILLTO' | translate}}</label>
       </div>
       <br>
       <div>
@@ -91,7 +107,7 @@
       </div>
     </div>
     <div class="locationData2">
-      <label>Sent To</label>
+        <label>{{'SENTTO' | translate}}</label>
       <br>
       <label style="font-weight: bold">{{data.ClientEmail}}</label>
     </div>
@@ -100,16 +116,26 @@
 
   <div class="thirdRow">
     <div class="idData4">
-      <label style="width: 25% ; text-align: center">Item Name</label>
-      <label style="width: 25% ; text-align: center">QTY.</label>
-      <label style="width: 25% ; text-align: center">Price</label>
-      <label style="width: 25% ; text-align: center">Total</label>
+        <label style="width: 25% ; text-align: center">{{'ITEMNAME' | translate}}</label>
+        <label style="width: 25% ; text-align: center">{{'ITEMQTY' | translate}}.</label>
+        <label style="width: 25% ; text-align: center">{{'ITEMPRICE' | translate}}</label>
+        <label style="width: 25% ; text-align: center">{{'ITEMTOTAL' | translate}}</label>
     </div>
-    <div class="locationData3">
-      <label style="font-weight: bold ; font-size: 25px ; width: 25% ; text-align: center">{{data.ItemName}}</label>
-      <label style="font-weight: bold ; font-size: 25px ; width: 25% ; text-align: center">{{data.Qty}}</label>
-      <label style="font-weight: bold ; font-size: 25px ; width: 25% ; text-align: center">{{data.price}}</label>
-      <label style="font-weight: bold ; font-size: 25px ; width: 25% ; text-align: center">${{data.Total}}</label>
+      <div class="thirdRow" *ngFor="let item of data.items; let i = index">
+          <div class="idData4">
+              <label style="width: 25% ; text-align: center">{{ item.itemName }}</label>
+              <label style="width: 25% ; text-align: center">{{ item.qty }}</label>
+              <label style="width: 25% ; text-align: center">{{ item.price }}</label>
+              <label style="width: 25% ; text-align: center">{{ item.total }}</label>
+          </div>
+      </div>
+
+
+      <div class="locationData3">
+          <label style="font-weight: bold ; font-size: 16px ; width: 25% ; text-align: center">{{'AMOUNTDUE' | translate}}</label>
+          <label style="font-weight: bold ; font-size: 25px ; width: 25% ; text-align: center"></label>
+          <label style="font-weight: bold ; font-size: 25px ; width: 25% ; text-align: center"></label>
+          <label style="font-weight: bold ; font-size: 25px ; width: 25% ; text-align: center">${{totale}}</label>
     </div>
   </div>
 

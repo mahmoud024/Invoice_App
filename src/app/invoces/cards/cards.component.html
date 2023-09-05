@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<div class="card">
+<div class="card"> <!--*ngFor="let cardItem of filteredCards"-->
   <div class="card-body">
     <div class="d-flex align-items-center">
       <div class="one">
@@ -24,15 +24,22 @@
         <p id="customer-name" class="m-0">{{card.InvoiceDate}}</p>
       </div>
       <div class="ml-auto" class="four">
-        <p id="price" class="m-0" [ngClass]="'price'">${{card.price}}</p>
+        <p id="price" class="m-0" [ngClass]="'price'">${{ calculateTotal(card.items) }}</p>
       </div>
-      <div class="paid">
+      <div class="paid" *ngIf="card.isPaid">
         <div class="point">
           <div class="custom-color rounded-circle"></div>
         </div>
         <div>
-          <div class="ml-2" *ngIf="card.isPaid">Paid</div>
-          <div class="ml-2" *ngIf="!card.isPaid">Paid</div>
+          <div class="ml-2">{{'PAID' | translate}}</div>
+        </div>
+      </div>
+      <div class="draft" *ngIf="!card.isPaid">
+        <div class="point">
+          <div class="custom-color2 rounded-circle"></div>
+        </div>
+        <div>
+          <div class="ml-2">{{'DRAFT' | translate}}</div>
         </div>
       </div>
       <button class="ml-auto" (click)="goToUpdate(card.id)" [ngClass]="'final'" class="six">
