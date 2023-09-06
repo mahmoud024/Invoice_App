@@ -105,7 +105,7 @@
 
       <label style="font-size: 20px ; font-weight: bold">{{'ITEMLIST' | translate}}</label>
 
-      <div class="form-group" *ngIf="itemform.controls.items['controls'].length === 0">
+      <div class="form-group" *ngIf="invoiceForm.get('items').controls.length === 0">
         <div class="row">
           <div class="col-md-6 mb-1" style="width: 100%; text-align: center">
             <label>{{'ITEMLISTEMPTY' | translate}}</label>
@@ -115,10 +115,9 @@
 
       <!-- Initial items fetched from Firestore -->
       <div class="form-group">
-        <form [formGroup]="itemform" (ngSubmit)="saved()" novalidate>
-          <div class="row">
+        <div class="row" *ngIf="invoiceForm.controls.items">
             <div formArrayName="items" style="padding-right: 0;">
-              <div *ngFor="let item of itemform.controls.items['controls'];index as i" [formGroupName]="i"
+              <div *ngFor="let item of invoiceForm.get('items').controls;index as i" [formGroup]="item"
                    style="display: flex;flex-direction: row;justify-content: space-between;">
                 <div class="col-md-4 mb-1">
                   <label for="itemDetail1">{{'ITEMNAME' | translate}}</label>
@@ -139,7 +138,7 @@
                 <div class="col-md-3 mb-1">
                   <label for="itemDetail4">{{'ITEMTOTAL' | translate}}</label>
                   <input required formControlName="total"
-                         [value]="itemform.controls.items['controls'][i].get('total').value" type="text"
+                         [value]="invoiceForm.get('items').controls[i].get('total').value" type="text"
                          class="form-control" id="itemDetail4" name="total">
                 </div>
 
@@ -157,7 +156,6 @@
             </div>
             <br>
           </div>
-        </form>
       </div>
 
       <div class="FinalButton">

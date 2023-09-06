@@ -22,7 +22,6 @@ export class AddInvoiceComponent implements OnInit {
   invoiceForm: FormGroup;
   isSaved: boolean = false;
   isButtonDisabled = false;
-  itemform: any;
 
   onPaymentTermChange(event: any) {
     this.selectedValue = event.target.value;
@@ -30,10 +29,6 @@ export class AddInvoiceComponent implements OnInit {
 
   constructor(private cs: CardService, private formbuilder: FormBuilder, private firestore: AngularFirestore, public translate: TranslateService) {
     // this.total = this.calculateTotal();
-    this.itemform = this.formbuilder.group({
-      items: this.formbuilder.array([])
-    })
-
   }
 
   /********************************************************************************/
@@ -52,6 +47,8 @@ export class AddInvoiceComponent implements OnInit {
       InvoiceDate: [new Date().toISOString(), Validators.required], // Initialize with a default date
       PaymentTerm: [this.selectedValue, Validators.required], // Default value
       Description: ['', Validators.required],
+      items: this.formbuilder.array([])
+
       // Define other form controls with their initial values and validators here
     });
   }
@@ -76,7 +73,7 @@ export class AddInvoiceComponent implements OnInit {
     const items = [];
 
     // Loop through the items in your FormArray and add them to the items array
-    const formItems = this.itemform.get('items') as FormArray;
+    const formItems = this.invoiceForm.get('items') as FormArray;
     formItems.controls.forEach((control) => {
       items.push({
         itemName: control.get('itemName').value,
@@ -117,7 +114,7 @@ export class AddInvoiceComponent implements OnInit {
 
   clearForm() {
     this.invoiceForm.reset();
-    const items = this.itemform.get('items') as FormArray;
+    const items = this.invoiceForm.get('items') as FormArray;
     items.clear(); // This will remove all items from the FormArray
     this.selectedValue = ''; // Reset the selected value for Payment Terms
   }
@@ -173,7 +170,7 @@ export class AddInvoiceComponent implements OnInit {
   }
 
   items(): FormArray {
-    return this.itemform.get('items') as FormArray;
+    return this.invoiceForm.get('items') as FormArray;
   }
 
 
