@@ -1,27 +1,21 @@
-# Task5
+# Invoices Website
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
+<div>
+  <img src="https://github.com/user-attachments/assets/62f3cf68-e7bc-45ea-ab84-819939bac520" alt="Image 1" heigh="30" width="1200">
+</div>
 
-## Development server
+<div>
+  <img src="https://github.com/user-attachments/assets/10fa3a6f-9bb7-4800-a275-5a5c8d392bf9" alt="Image 2" heigh="30" width="1200">
+</div>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+<div>
+  <img src="https://github.com/user-attachments/assets/aabed519-17d3-4f28-bee5-7d0454b7e518" alt="Image 3" heigh="30" width="1200">
+</div>
 
-## Code scaffolding
+<div>
+  <img src="https://github.com/user-attachments/assets/0a6c01eb-52ba-4ed3-9afc-86b1d21e93a3" alt="Image 4" heigh="30" width="1200">
+</div>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
